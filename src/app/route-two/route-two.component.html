@@ -1,0 +1,14 @@
+<div class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+    <app-product-list-header (viewType)="changeView($event)" (orderBy)="orderBy($event)"
+    class="col-sm-12 d-flex flex-row justify-content-between my-3">
+
+    </app-product-list-header>
+    <section class="d-flex flex-row flex-wrap col-sm-12">
+        <app-product-list-cards *ngFor="let product of (productList | orderbyPipe:order)" [product]="product" class="d-flex flex-row justify-content-stretch"
+            [ngClass]="viewClass">
+
+        </app-product-list-cards>
+    </section>
+
+
+</div>
