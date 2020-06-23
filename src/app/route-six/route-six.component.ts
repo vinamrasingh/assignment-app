@@ -15,7 +15,6 @@ export class RouteSixComponent implements OnInit, OnDestroy {
   componentRef: any[] = [];
   private closeSub: Subscription;
   private alertSub: Subscription = new Subscription();
-  //private alertSubParent:Subscription;
 
   ngOnInit(): void {
     this.showBoxes();
