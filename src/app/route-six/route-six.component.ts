@@ -15,6 +15,7 @@ export class RouteSixComponent implements OnInit, OnDestroy {
   componentRef: any[] = [];
   private closeSub: Subscription;
   private alertSub: Subscription = new Subscription();
+  initialBoxes: number = 15;
 
   ngOnInit(): void {
     this.showBoxes();
@@ -25,13 +26,13 @@ export class RouteSixComponent implements OnInit, OnDestroy {
     );
     const hostViewContainerRef = this.boxHost.viewContainerRef;
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < this.initialBoxes; i++) {
       let length;
       let dynamicCmp = hostViewContainerRef.createComponent(boxCmpFactory);
       length = this.componentRef.length;
-      if (length < 20) {
+      if (length < this.initialBoxes) {
         dynamicCmp.instance.counter = i + 1;
-      } else if (length >= 20) {
+      } else if (length >= this.initialBoxes) {
         dynamicCmp.instance.counter = length + 1;
       }
       let dynamicCmpSub = dynamicCmp.instance.alert.subscribe(() => {
