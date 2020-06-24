@@ -8,14 +8,21 @@ describe('ProductListCardsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductListCardsComponent ]
+      declarations: [ProductListCardsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductListCardsComponent);
     component = fixture.componentInstance;
+    component.product = {
+      title: 'abc',
+      type: 'abc',
+      price: 1,
+      rating: 1
+    };
+    component.viewClass = 'col-sm-3';
     fixture.detectChanges();
   });
 

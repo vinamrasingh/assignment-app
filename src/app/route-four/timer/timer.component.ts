@@ -9,11 +9,11 @@ import { TimerService } from '../service/timer-service.service';
 export class TimerComponent implements OnInit, OnDestroy {
 
   timer: any;
-  timerCountSubscription
+  timerCountSubscription;
   constructor(private timerService: TimerService) {
     this.timerCountSubscription = this.timerService.timerCount.subscribe((timerValue: { timer: any }) => {
       this.timer = timerValue.timer;
-    })
+    });
   }
   ngOnInit(): void {
   }

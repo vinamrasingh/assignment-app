@@ -15,7 +15,7 @@ export class RouteSixComponent implements OnInit, OnDestroy {
   componentRef: any[] = [];
   private closeSub: Subscription;
   private alertSub: Subscription = new Subscription();
-  initialBoxes: number = 15;
+  initialBoxes = 15;
 
   ngOnInit(): void {
     this.showBoxes();
@@ -28,16 +28,16 @@ export class RouteSixComponent implements OnInit, OnDestroy {
 
     for (let i = 0; i < this.initialBoxes; i++) {
       let length;
-      let dynamicCmp = hostViewContainerRef.createComponent(boxCmpFactory);
+      const dynamicCmp = hostViewContainerRef.createComponent(boxCmpFactory);
       length = this.componentRef.length;
       if (length < this.initialBoxes) {
         dynamicCmp.instance.counter = i + 1;
       } else if (length >= this.initialBoxes) {
         dynamicCmp.instance.counter = length + 1;
       }
-      let dynamicCmpSub = dynamicCmp.instance.alert.subscribe(() => {
-        alert("You have clicked box " + dynamicCmp.instance.counter);
-      })
+      const dynamicCmpSub = dynamicCmp.instance.alert.subscribe(() => {
+        alert('You have clicked box ' + dynamicCmp.instance.counter);
+      });
       this.componentRef.push(dynamicCmp);
       this.alertSub.add(dynamicCmpSub);
     }
@@ -46,12 +46,12 @@ export class RouteSixComponent implements OnInit, OnDestroy {
     if (this.alertSub) {
       this.alertSub.unsubscribe();
     }
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      console.log("End");
+      console.log('End');
       this.showBoxes();
     }
   }

@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RouteTwoComponent } from './route-two.component';
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({ name: 'orderbyPipe' })
+class MockPipe implements PipeTransform {
+  transform(array: any, category: string, order: string): any {
+    return array;
+  }
+}
 
 describe('RouteTwoComponent', () => {
   let component: RouteTwoComponent;
@@ -8,9 +16,9 @@ describe('RouteTwoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RouteTwoComponent ]
+      declarations: [RouteTwoComponent, MockPipe]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

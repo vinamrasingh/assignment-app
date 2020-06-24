@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./timer-counter.component.scss']
 })
 export class TimerCounterComponent implements OnInit {
-  @Input() pauseCounter:number;
-  @Input() startCounter:number;
+  @Input() pauseCounter: number;
+  @Input() startCounter: number;
   constructor() { }
 
   ngOnInit(): void {

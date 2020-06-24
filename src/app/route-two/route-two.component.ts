@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as products from "./products.json";
+import * as products from './products.json';
 
 @Component({
   selector: 'app-route-two',
@@ -8,23 +8,22 @@ import * as products from "./products.json";
 })
 export class RouteTwoComponent implements OnInit {
   productList: any = (products as any).default;
-  viewClass: string = "col-sm-3";
-  order: string = "l2h"
+  viewClass = 'col-sm-3';
+  order = 'l2h';
 
   constructor() { }
 
   ngOnInit(): void {
 
   }
-  changeView(viewType: { view: String }) {
-    if (viewType.view == "grid") {
-      this.viewClass = "col-sm-3";
-    } else if (viewType.view == "list") {
-      this.viewClass = "col-sm-6";
+  changeView(viewType: { view: string }) {
+    if (viewType.view === 'grid') {
+      this.viewClass = 'col-sm-3';
+    } else if (viewType.view === 'list') {
+      this.viewClass = 'col-sm-6';
     }
   }
   orderBy(orderBy: { order: string }) {
     this.order = orderBy.order;
   }
-
 }

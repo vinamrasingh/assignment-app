@@ -5,17 +5,17 @@ import { TimerTimestampComponent } from './timer-timestamp.component';
 describe('TimerTimestampComponent', () => {
   let component: TimerTimestampComponent;
   let fixture: ComponentFixture<TimerTimestampComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimerTimestampComponent ]
+      declarations: [TimerTimestampComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TimerTimestampComponent);
     component = fixture.componentInstance;
+    component.timeStamp = { func: 'started', timeStamp: new Date() };
     fixture.detectChanges();
   });
 

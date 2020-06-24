@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as students from "./students.json";
+import * as students from './students.json';
 
 @Component({
   selector: 'app-route-five',
@@ -9,28 +9,27 @@ import * as students from "./students.json";
 export class RouteFiveComponent implements OnInit {
   studentList: any = (students as any).default;
   constructor() { }
-  category: string = "";
-  order: string = "";
+  category = '';
+  order = '';
   currentOrderClick = 0;
   originalList = Object.assign([], this.studentList);
   ngOnInit(): void {
   }
   sortBy(value) {
-    console.log(value)
     if (value) {
       value = value.toLowerCase();
       if (value !== this.category) {
         this.currentOrderClick = 1;
         this.category = value;
-        this.order = "asc";
+        this.order = 'asc';
       } else {
         this.currentOrderClick += 1;
-        if (this.currentOrderClick == 2) {
-          this.order = "desc";
+        if (this.currentOrderClick === 2) {
+          this.order = 'desc';
         }
         else if (this.currentOrderClick > 2) {
-          this.order = "";
-          this.category = "";
+          this.order = '';
+          this.category = '';
           this.currentOrderClick = 0;
           this.studentList = Object.assign([], this.originalList);
         }

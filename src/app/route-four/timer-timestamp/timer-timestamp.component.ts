@@ -12,7 +12,7 @@ export class TimerTimestampComponent implements OnInit, OnDestroy {
   timerActionSubscription: Subscription;
   constructor(private timerService: TimerService) {
     this.timerActionSubscription = this.timerService.timerAction.subscribe(
-      (action: { func: String, timeStamp: Date }) => {
+      (action: { func: string, timeStamp: Date }) => {
         this.actionOccured(action);
       }
     );
@@ -22,7 +22,7 @@ export class TimerTimestampComponent implements OnInit, OnDestroy {
     this.timeStamps.push({
       func: action.func, timeStamp: action.timeStamp
     });
-    if (action.func === "reset") {
+    if (action.func === 'reset') {
       this.timeStamps = [];
     }
   }

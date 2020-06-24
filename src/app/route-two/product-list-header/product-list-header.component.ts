@@ -6,21 +6,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./product-list-header.component.scss']
 })
 export class ProductListHeaderComponent implements OnInit {
-  @Output() viewType = new EventEmitter<{ view: String}>();
-  @Output() orderBy =  new EventEmitter<{order: String}>();
-  order:string="l2h";
+  @Output() viewType = new EventEmitter<{ view: string }>();
+  @Output() orderBy = new EventEmitter<{ order: string }>();
+  order = 'l2h';
   constructor() { }
 
   ngOnInit(): void {
   }
   gridViewClicked() {
-    this.viewType.emit({ view: "grid"});
+    this.viewType.emit({ view: 'grid' });
   }
   listViewClicked() {
-    this.viewType.emit({view:"list"});
+    this.viewType.emit({ view: 'list' });
   }
-  arrange(value){
-    console.log(value)
-    this.orderBy.emit({order:value});
+  arrange(value) {
+    this.orderBy.emit({ order: value });
   }
 }

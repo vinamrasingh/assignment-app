@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
   @Input() student: any;
-  orderBy: string = "";
+  orderBy = '';
 
   constructor() { }
 

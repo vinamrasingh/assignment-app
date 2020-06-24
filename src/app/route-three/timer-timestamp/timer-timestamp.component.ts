@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./timer-timestamp.component.scss']
 })
 export class TimerTimestampComponent implements OnInit {
-  @Input() timeStamp:{func:string,timeStamp:Date};
+  @Input() timeStamp: { func: string, timeStamp: Date };
   constructor() { }
 
   ngOnInit(): void {

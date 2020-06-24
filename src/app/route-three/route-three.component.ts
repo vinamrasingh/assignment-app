@@ -8,9 +8,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class RouteThreeComponent implements OnInit {
   timeStamps: { func: string, timeStamp: Date }[] = [];
-  pausedCounter: number = 0;
-  startedCounter: number = 0;
-  timerCount: any
+  pausedCounter = 0;
+  startedCounter = 0;
+  timerCount: any;
 
   constructor() { }
 
@@ -20,13 +20,13 @@ export class RouteThreeComponent implements OnInit {
     this.timeStamps.push({
       func: action.func, timeStamp: action.timeStamp
     });
-    if (action.func === "paused") {
+    if (action.func === 'paused') {
       this.pausedCounter += 1;
     }
-    else if (action.func === "started") {
+    else if (action.func === 'started') {
       this.startedCounter += 1;
     }
-    else if (action.func === "reset") {
+    else if (action.func === 'reset') {
       this.pausedCounter = 0;
       this.startedCounter = 0;
       this.timeStamps = [];

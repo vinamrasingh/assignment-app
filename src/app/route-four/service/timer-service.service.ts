@@ -4,9 +4,9 @@ import { Injectable, EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class TimerService {
-  timerAction = new EventEmitter<{ func: String, timeStamp: Date }>();
+  timerAction = new EventEmitter<{ func: string, timeStamp: Date }>();
   timerCount = new EventEmitter<{ timer: any }>();
-  timerShow: number = 0;
+  timerShow = 0;
 
   constructor() { }
   getTimerShow() {

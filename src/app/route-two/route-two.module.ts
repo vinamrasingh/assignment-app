@@ -6,13 +6,15 @@ import { RouteTwoComponent } from './route-two.component';
 import { ProductListHeaderComponent } from './product-list-header/product-list-header.component';
 import { ProductListCardsComponent } from './product-list-cards/product-list-cards.component';
 import { OrderbyPipePipe } from './orderby-pipe.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [RouteTwoComponent, ProductListHeaderComponent, ProductListCardsComponent, OrderbyPipePipe],
   imports: [
     CommonModule,
-    RouteTwoRoutingModule
+    RouteTwoRoutingModule,
+    FormsModule
   ]
 })
 export class RouteTwoModule { }

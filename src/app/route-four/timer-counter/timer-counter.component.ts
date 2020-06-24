@@ -7,23 +7,23 @@ import { Subscription } from 'rxjs';
   templateUrl: './timer-counter.component.html',
   styleUrls: ['./timer-counter.component.scss']
 })
-export class TimerCounterComponent implements OnInit,OnDestroy {
-  pausedCounter: number = 0;
-  startedCounter: number = 0;
+export class TimerCounterComponent implements OnInit, OnDestroy {
+  pausedCounter = 0;
+  startedCounter = 0;
   timerActionSubscription: Subscription;
   constructor(private timerService: TimerService) {
     this.timerActionSubscription = this.timerService.timerAction.subscribe((action) => {
-      if (action.func === "paused") {
+      if (action.func === 'paused') {
         this.pausedCounter += 1;
       }
-      else if (action.func === "started") {
+      else if (action.func === 'started') {
         this.startedCounter += 1;
       }
-      else if (action.func === "reset") {
+      else if (action.func === 'reset') {
         this.startedCounter = 0;
         this.pausedCounter = 0;
       }
-    })
+    });
   }
 
   ngOnInit(): void {
