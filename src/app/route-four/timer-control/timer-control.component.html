@@ -1,8 +1,8 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
-    <input class="form-control" type="number" [(ngModel)]="timerValue" (change)="inputChanged($event)">
+    <input class="form-control" type="number" min="1" [(ngModel)]="timerValue" (change)="inputChanged($event)">
     <div class="d-flex flex-row justify-content-center align-items-center my-3">
         <button class="btn btn-primary mr-2" (click)="startPauseTimer()"
-            [disabled]="timerValue==null">Start/Pause</button>
+            [disabled]="timerValue==null || timerValue==0">Start/Pause</button>
         <button class="btn btn-primary ml-2" (click)="resetTimer()">Reset</button>
     </div>
 </div>

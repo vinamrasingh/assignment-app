@@ -12,9 +12,9 @@ export class TimerControlComponent implements OnInit {
   valueAssigned: boolean = false;
   timer: any;
   timerStarted: boolean = false;
+  startedShow: boolean = false;
   @Output() timerAction = new EventEmitter<{ func: String, timeStamp: Date }>();
   @Output() timerCount = new EventEmitter<{ timer: any }>();
-
 
   constructor() { }
 
@@ -23,7 +23,6 @@ export class TimerControlComponent implements OnInit {
   startPauseTimer() {
     this.timerStarted = !this.timerStarted;
     if (this.timerStarted) {
-      this.timerAction.emit({ func: "started", timeStamp: new Date() });
       this.stopInterval();
       this.startInterval();
     } else {
@@ -33,7 +32,6 @@ export class TimerControlComponent implements OnInit {
   }
 
   inputChanged(event) {
-    console.log(event);
     this.valueAssigned = false;
     this.timerStarted = false;
     this.timerAction.emit({ func: "reset", timeStamp: new Date() })
@@ -42,21 +40,31 @@ export class TimerControlComponent implements OnInit {
     if (this.timerValue > 0 && !this.valueAssigned) {
       this.valueAssigned = true;
       this.timerShow = this.timerValue;
+      this.startedShow = false;
     }
     this.stopInterval();
+
     this.timer = setInterval(() => {
-      if (this.timerShow > 0) {
+      if (this.timerShow >= 0) {
+        this.timerCount.emit({ timer: this.timerShow >= 0 ? this.timerShow : "" })
+        if (!this.startedShow) {
+          this.timerAction.emit({ func: "started", timeStamp: new Date() });
+          this.startedShow = !this.startedShow;
+        }
+
         this.timerShow -= 1;
-      } else {
-        this.timerShow = null
+        if (this.timerShow == -1) {
+          this.timerValue = null;
+          this.stopInterval();
+          this.timerAction.emit({ func: "finished", timeStamp: new Date() });
+        }
       }
-      console.log(this.timerShow);
-      this.timerCount.emit({ timer: this.timerShow > 0 ? this.timerShow : "" })
     }, 1000);
   }
   stopInterval() {
     if (this.timer) {
       clearInterval(this.timer);
+      this.startedShow = false;
     }
   }
   resetTimer() {

@@ -12,6 +12,7 @@ export class TimerControlComponent implements OnInit {
   valueAssigned: boolean = false;
   timer: any;
   timerStarted: boolean = false;
+  startedShow: boolean = false;
 
   constructor(private timerService: TimerService) { }
 
@@ -20,7 +21,6 @@ export class TimerControlComponent implements OnInit {
   startPauseTimer() {
     this.timerStarted = !this.timerStarted;
     if (this.timerStarted) {
-      this.timerService.timerAction.emit({ func: "started", timeStamp: new Date() });
       this.stopInterval();
       this.startInterval();
     } else {
@@ -30,7 +30,6 @@ export class TimerControlComponent implements OnInit {
   }
 
   inputChanged(event) {
-    console.log(event);
     this.valueAssigned = false;
     this.timerStarted = false;
     this.timerService.timerAction.emit({ func: "reset", timeStamp: new Date() })
@@ -39,21 +38,29 @@ export class TimerControlComponent implements OnInit {
     if (this.timerValue > 0 && !this.valueAssigned) {
       this.valueAssigned = true;
       this.timerService.setTimerShow(this.timerValue);
+      this.startedShow = false;
     }
     this.stopInterval();
     this.timer = setInterval(() => {
-      if (this.timerService.getTimerShow() > 0) {
+      if (this.timerService.getTimerShow() >= 0) {
+        this.timerService.timerCount.emit({ timer: this.timerService.getTimerShow() >= 0 ? this.timerService.getTimerShow() : "" });
+        if (!this.startedShow) {
+          this.timerService.timerAction.emit({ func: "started", timeStamp: new Date() });
+          this.startedShow = !this.startedShow;
+        }
         this.timerService.setTimerShow(this.timerService.getTimerShow() - 1);
-      } else {
-        this.timerService.setTimerShow(null)
+        if (this.timerService.getTimerShow() == -1) {
+          this.timerValue = null;
+          this.stopInterval();
+          this.timerService.timerAction.emit({ func: "finished", timeStamp: new Date() });
+        }
       }
-      console.log(this.timerService.getTimerShow());
-      this.timerService.timerCount.emit({ timer: this.timerService.getTimerShow() > 0 ? this.timerService.getTimerShow() : "" })
     }, 1000);
   }
   stopInterval() {
     if (this.timer) {
       clearInterval(this.timer);
+      this.startedShow = false;
     }
   }
   resetTimer() {

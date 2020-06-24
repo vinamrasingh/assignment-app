@@ -7,7 +7,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./route-three.component.scss']
 })
 export class RouteThreeComponent implements OnInit {
-  timeStamps: {func:string, timeStamp:Date}[] = [];
+  timeStamps: { func: string, timeStamp: Date }[] = [];
   pausedCounter: number = 0;
   startedCounter: number = 0;
   timerCount: any
@@ -18,7 +18,7 @@ export class RouteThreeComponent implements OnInit {
   }
   actionOccured(action: { func: string, timeStamp: Date }) {
     this.timeStamps.push({
-      func:action.func,timeStamp: action.timeStamp
+      func: action.func, timeStamp: action.timeStamp
     });
     if (action.func === "paused") {
       this.pausedCounter += 1;
