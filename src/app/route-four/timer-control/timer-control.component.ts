@@ -13,6 +13,8 @@ export class TimerControlComponent implements OnInit {
   timer: any;
   timerStarted: boolean = false;
   startedShow: boolean = false;
+  pausedAt: number = null;
+  startAt: number = null;
 
   constructor(private timerService: TimerService) { }
 
@@ -26,6 +28,7 @@ export class TimerControlComponent implements OnInit {
     } else {
       this.stopInterval();
       this.timerService.timerAction.emit({ func: "paused", timeStamp: new Date() })
+      this.pausedAt = this.timerService.getTimerShow() + 1;
     }
   }
 
@@ -47,6 +50,7 @@ export class TimerControlComponent implements OnInit {
         if (!this.startedShow) {
           this.timerService.timerAction.emit({ func: "started", timeStamp: new Date() });
           this.startedShow = !this.startedShow;
+          this.startAt = this.timerService.getTimerShow();
         }
         this.timerService.setTimerShow(this.timerService.getTimerShow() - 1);
         if (this.timerService.getTimerShow() == -1) {
@@ -69,6 +73,8 @@ export class TimerControlComponent implements OnInit {
     this.timerService.setTimerShow(0);
     this.valueAssigned = false;
     this.timerStarted = false;
+    this.startAt = null;
+    this.pausedAt = null;
     this.timerService.timerCount.emit({ timer: this.timerService.getTimerShow() > 0 ? this.timerService.getTimerShow() : "" })
     this.timerService.timerAction.emit({ func: "reset", timeStamp: new Date() })
   }

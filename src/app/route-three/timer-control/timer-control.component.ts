@@ -9,6 +9,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class TimerControlComponent implements OnInit {
   timerValue: number = 0;
   timerShow: number = 0;
+  pausedAt: number = null;
+  startAt: number = null;
   valueAssigned: boolean = false;
   timer: any;
   timerStarted: boolean = false;
@@ -28,6 +30,8 @@ export class TimerControlComponent implements OnInit {
     } else {
       this.stopInterval();
       this.timerAction.emit({ func: "paused", timeStamp: new Date() })
+      this.pausedAt = this.timerShow + 1;
+
     }
   }
 
@@ -47,9 +51,11 @@ export class TimerControlComponent implements OnInit {
     this.timer = setInterval(() => {
       if (this.timerShow >= 0) {
         this.timerCount.emit({ timer: this.timerShow >= 0 ? this.timerShow : "" })
+
         if (!this.startedShow) {
           this.timerAction.emit({ func: "started", timeStamp: new Date() });
           this.startedShow = !this.startedShow;
+          this.startAt = this.timerShow;
         }
 
         this.timerShow -= 1;
@@ -73,6 +79,8 @@ export class TimerControlComponent implements OnInit {
     this.timerShow = null;
     this.valueAssigned = false;
     this.timerStarted = false;
+    this.startAt = null;
+    this.pausedAt = null;
     this.timerCount.emit({ timer: this.timerShow > 0 ? this.timerShow : "" })
     this.timerAction.emit({ func: "reset", timeStamp: new Date() })
   }

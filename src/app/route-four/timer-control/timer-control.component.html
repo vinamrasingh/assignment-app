@@ -5,4 +5,8 @@
             [disabled]="timerValue==null || timerValue==0">Start/Pause</button>
         <button class="btn btn-primary ml-2" (click)="resetTimer()">Reset</button>
     </div>
+    <div class="d-flex col-sm-12 flex-row justify-content-around align-items-center my-3">
+        <p>Started at: {{startAt}}</p>
+        <p>Paused at: {{pausedAt}}</p>
+    </div>
 </div>
