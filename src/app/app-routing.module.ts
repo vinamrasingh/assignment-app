@@ -4,11 +4,6 @@ import { Routes, RouterModule, PreloadingStrategy, PreloadAllModules } from '@an
 
 const routes: Routes = [
   {
-    path: 'route-three',
-    loadChildren: () => import('./route-three/route-three.module')
-      .then(m => m.RouteThreeModule)
-  },
-  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'
@@ -23,9 +18,30 @@ const routes: Routes = [
     loadChildren: () => import('./route-two/route-two.module')
       .then(m => m.RouteTwoModule)
   },
-  { path: 'route-five', loadChildren: () => import('./route-five/route-five.module').then(m => m.RouteFiveModule) },
-  { path: 'route-four', loadChildren: () => import('./route-four/route-four.module').then(m => m.RouteFourModule) },
-  { path: 'route-six', loadChildren: () => import('./route-six/route-six.module').then(m => m.RouteSixModule) }
+  {
+    path: 'route-three',
+    loadChildren: () => import('./route-three/route-three.module')
+      .then(m => m.RouteThreeModule)
+  },
+  {
+    path: 'route-four',
+    loadChildren: () => import('./route-four/route-four.module')
+      .then(m => m.RouteFourModule)
+  },
+  {
+    path: 'route-five',
+    loadChildren: () => import('./route-five/route-five.module')
+      .then(m => m.RouteFiveModule)
+  },
+  {
+    path: 'route-six',
+    loadChildren: () => import('./route-six/route-six.module')
+      .then(m => m.RouteSixModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({
