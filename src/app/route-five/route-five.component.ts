@@ -12,7 +12,7 @@ export class RouteFiveComponent implements OnInit {
   category = '';
   order = '';
   currentOrderClick = 0;
-  originalList = Object.assign([], this.studentList);
+  originalList = [...this.studentList];
   ngOnInit(): void {
   }
   sortBy(value) {
@@ -31,7 +31,7 @@ export class RouteFiveComponent implements OnInit {
           this.order = '';
           this.category = '';
           this.currentOrderClick = 0;
-          this.studentList = Object.assign([], this.originalList);
+          this.studentList = [...this.originalList];
         }
       }
     }

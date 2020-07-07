@@ -3,7 +3,7 @@
     <section class="d-flex flex-column col-sm-8 align-items-center justify-content-around my-4">
         <div class="d-flex flex-row col-sm-12 justify-content-around">
             <button class="btn btn-outline-primary col-sm-2" *ngFor="let key of getKeys()"
-                (click)="sortBy($event.target.innerText)">{{key|titlecase}}</button>
+                (click)="sortBy(key.toLowerCase())">{{key|titlecase}}</button>
         </div>
         <app-student *ngFor="let student of (studentList | sortBy: category: order)" [student]="student"
             class="d-flex col-sm-12 flex-row justify-content-around">
